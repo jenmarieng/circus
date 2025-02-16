@@ -2,11 +2,15 @@ package circus;
 
 import circus.animal.Animal;
 import circus.animal.Duck;
+import circus.animal.Elephant;
 import circus.animal.Parrot;
 import circus.animal.Tiger;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -41,8 +45,27 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        System.out.println(animals.length);
+//        makeAnimalsTalk();
+//        System.out.println("Total value of animals " + calculateAssetValue(animals));
+//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+//        animals[3] = new Elephant("Strong One");
+//        System.out.println(animals.length);
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+
+        Parrot perry = new Parrot("Perry");
+        animalArrayList.add(perry);
+        animalArrayList.add(new Elephant("Blue"));
+        Duck qua = new Duck("Qua");
+        animalArrayList.add(qua);
+
+        for (Animal a : animalArrayList) {
+            System.out.println(a);
+        }
+
+        //indexOf can only be used when we know the object of reference, eg. perry. it cant be used for the elephant Blue
+        System.out.println("Index of Perry: " + animalArrayList.indexOf(perry));
+
+        animalArrayList.sort(Animal.AnimalNameComparator);
     }
 }
